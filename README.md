@@ -8,6 +8,7 @@ DIC- [Graduation Assignment] Original Application / 卒業制作 オリジナル
 
 ## Deployment Languages/開発言語
 
+
 * Ruby 3.0.1
 * Rails 6.0.3
 
@@ -17,7 +18,6 @@ DIC- [Graduation Assignment] Original Application / 卒業制作 オリジナル
 
 * devise
 * Friends connecting function
-
 
 
 
@@ -64,4 +64,6 @@ $ rails s
 [CACOO>Screen Transitions Diagram / 画面遷移図 ](https://cacoo.com/diagrams/cyHLzlqFlzR5BBD5/CA118)
 
 
+
 ![Screen Transitions Diagram / 画面遷移図](https://user-images.githubusercontent.com/73887214/152555880-d22f159b-e5e4-418a-8912-19200058e66c.png)* ...
+
