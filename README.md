@@ -16,6 +16,7 @@ DIC- [Graduation Assignment] Original Application / 卒業制作 オリジナル
 ## Work Term Technologies/就業Termの技術
 
 * devise
+* Friends connecting function
 
 
 
