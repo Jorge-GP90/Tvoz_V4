@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class TasksControllerTest < ActionDispatch::IntegrationTest
+class TvozesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get tasks_index_url
+    get tvozes_index_url
     assert_response :success
   end
 
