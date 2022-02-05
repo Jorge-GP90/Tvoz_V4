@@ -52,12 +52,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-
-#Gems for setting React and from research
-
-#get your Rails variables in your js
-gem 'gon'
-
-#get react-rails with Asset Pipelines
-gem 'react-rails'
