@@ -56,7 +56,8 @@ $ rails s
 
 
 #### ER Diagram / ER図
-![ERD](https://user-images.githubusercontent.com/73887214/152517158-6de1c907-32e6-4424-b417-836a1cbcc3fb.png)
+![ERD](https://user-images.githubusercontent.com/73887214/152671163-523d3d65-f1a8-4927-9adb-4c371434b6f4.png)
+
 
 
 
@@ -65,5 +66,6 @@ $ rails s
 
 
 
-![Screen Transitions Diagram / 画面遷移図](https://user-images.githubusercontent.com/73887214/152555880-d22f159b-e5e4-418a-8912-19200058e66c.png)* ...
+![Screen Transitions Diagram / 画面遷移図](https://user-images.githubusercontent.com/73887214/152671309-1299e2a0-7d0c-451a-99f0-f9263705d777.png)
+
 

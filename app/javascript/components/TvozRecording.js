@@ -2,21 +2,17 @@ import React from "react"
 import PropTypes from "prop-types"
 
 
-class Tvoz extends React.Component {
+class TvozRecording extends React.Component {
   render () {
     return (
+      <div>
+        <div style="">
       <React.Fragment>
-        {this.props.comment}
-
       </React.Fragment>
+        </div>
+      </div>
     );
   }
 }
 
-Tvoz.propTypes = {
-  comment: PropTypes.string
-};
-
-
-
-export default Tvoz
+export default TvozRecording
