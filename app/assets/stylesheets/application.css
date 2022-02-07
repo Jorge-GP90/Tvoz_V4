@@ -19,3 +19,24 @@ header {
    background-color: #fff;
  
  }
+
+ ul {
+   list-style: none;
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+ }
+
+
+ li a {
+   display: flex;
+   flex-direction: column;
+   padding: 10px 0;
+   font-weight: 700;
+   text-align: center;
+ }
+
+ li a span {
+   color: #053e62;
+   font-size: 13px;
+ }
