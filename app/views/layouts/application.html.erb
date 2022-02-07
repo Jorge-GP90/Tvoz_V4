@@ -13,7 +13,7 @@
   <body>
     <%= render 'home/header'%>
     <div class="container-fluid">
-     <div class="">
+     <div class="flash_messages">
        <% flash.each do |key, value| %>
          <%= content_tag(:div, value, class: "alert alert-#{key}") %>
        <% end %>
