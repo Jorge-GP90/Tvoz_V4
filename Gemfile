@@ -33,9 +33,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'dotenv-rails'
 # Users:Teachers & Students
 gem 'devise'
-#Adding Admin screen control
+#Adding /Admin  managemnet screen control
 gem 'rails_admin', ['>= 3.0.0.rc', '< 4']
-
+#Access to Managemnet Screen
+gem 'cancancan'
 
 
 group :development, :test do
