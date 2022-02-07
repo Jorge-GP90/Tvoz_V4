@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  root "task#index"
+  root "home#top"
+  # root "task#index"
   resources :tasks
 
 
