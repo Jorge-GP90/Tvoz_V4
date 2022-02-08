@@ -6,6 +6,8 @@
 // this are steps to add from https://github.com/rails/webpacker/tree/5-x-stable
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
+import 'bootstrap';
+import '../stylesheets/application';
 
 
 require("@rails/ujs").start()

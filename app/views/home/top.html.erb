@@ -1,38 +1,127 @@
-<div class="background">
-   <div class="top-logo">
-     <%= image_tag("/images/logo-speaking.png", height: 45) %>
-     <br>
-     <h5>Enjoy Speaking<br>Pronuntiation APP</h5>
-     <h1>Welcome to Tvoz</h1>
-   </div>
+<div class="container-fluid">
+  <div class="background">
+    <div class="top-front">  
+      <div class="top-logo">
+        <div class="top-logo-inner">
+          <%= image_tag("/images/logo_speaking.png", height: 45) %>
+          <br>
+          <h5>Enjoy Speaking<br>Pronuntiation APP</h5>
+          <h1>Welcome to Tvoz</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1 col-md-1 col-lg-1"></div>
+      <div class="col-sm-10 col-md-10 col-lg-10">
+        <div class="translucent-box">
+          <p>explanation box</p>
+        </div>
+        <div class="translucent-box">
+          <p>explanation box</p>
+        </div>
+        <div class="translucent-box">
+          <p>explanation box</p>
+        </div>
+        <div class="translucent-box">
+          <p>explanation box</p>
+        </div>
+        <div class="translucent-box">
+          <p>explanation box</p>
+        </div>
+        <div class="translucent-box">
+          <p>explanation box</p>
+        </div>
+        <div class="translucent-box">
+          <p>explanation box</p>
+        </div>
+        <div class="translucent-box">
+          <p>explanation box</p>
+        </div>
+        <div class="translucent-box">
+          <p>explanation box</p>
+        </div>
+        <div class="translucent-box right mb-4">
+          <p>explanation box</p>
+        </div>
+        <% if user_signed_in? %>
+        <div class="top-bottom">
+          <div class="after-login">
+            <p>Welcome back</p>
+            <div class="d-flex justify-content-center">
+              <%= link_to 'Tvoz list', '#', class: 'm-3' %>
+            </div>
+            <p><small>Aprendamos</small></p>
+          </div>
+        </div>
+        <% else %>
+          <div class="top-bottom">
+            <div class="links d-flex justify-content-center">
+              <div class="transition-btn">
+                <%= link_to 'Login', new_user_session_path %>
+              </div>
+              <div class="ml-3 transition-btn">
+                <%= link_to 'Sign up', new_user_registration_path %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <p class="copywright"><small>© 2021 PRODIVE All rights reserved.</small></p>
+      </div>
+      <div class="col-sm-1 col-md-1 col-lg-1"></div>
+    </div>
+  </div>
+</div> 
 
-   <div class="translucent-box">
-     <p></p>
-   </div>
 
-   <br>
-   <p>BOX</p>
-   <br>
-   <p>BOX</p>
-   <br>
-   <p>BOX</p>
-   <br>
-   <p>BOX</p>
-   <br>
-   <p>BOX</p>
-   <br>
-   <p>BOX</p>
-   <br>
-   <p>BOX</p>
-   <br>
-   <p>BOX</p>
-   <br>
-   <div class="">
-     <%= link_to 'Log in', "#" %>
-   </div>
-   <div class="">
-     <%= link_to 'Register', "#" %>
-   </div>
-   <br>
 
- </div>
+
+
+
+
+
+    <div class="row">
+      <div class="col-sm-1 col-md-1 col-lg-1"></div>
+      <div class="col-sm-10 col-md-10 col-lg-10">
+
+      
+        <% if user_signed_in? %>
+          <div class="top-bottom">
+            <div class="after-login">
+              <p>海況MAPでお好きなダイビングサイトが</p>
+              <p>今日OPENしてるかみてみましょう</p>
+              <div class="d-flex justify-content-center">
+                <%= link_to '海況MAPへ', divesites_path, class: 'm-3' %>
+              </div>
+              <p><small>現地サービスの方の海況投稿をお待ちしています</small></p>
+            </div>
+          </div>
+        <% else %>
+          <div class="top-bottom">
+            <div class="links d-flex justify-content-center">
+              <div class="transition-btn">
+                <%= link_to 'ログイン', new_user_session_path %>
+              </div>
+              <div class="ml-3 transition-btn">
+                <%= link_to 'アカウント登録', new_user_registration_path %>
+              </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-center">
+              <%= link_to user_google_omniauth_authorize_path, class: 'm-4 oauth-google' do %>
+                <i class="fas fa-angle-right"> Gmailでログイン</i>
+              <% end %>
+              <%= image_tag '/images/diver.png', class: "diver02" %>
+            </div>
+            <div class="d-flex justify-content-center">
+              <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: 'mb-2 guest-login' %>
+            </div>
+            <div class="d-flex justify-content-center">
+              <%= link_to 'ゲストログイン(管理者)', users_guest_admin_sign_in_path, method: :post, class: 'm-2 guest-login' %>
+            </div>
+          </div>
+        <% end %>
+        <p class="copywright"><small>© 2021 PRODIVE All rights reserved.</small></p>
+      </div>
+      <div class="col-sm-1 col-md-1 col-lg-1"></div>
+    </div>
+  </div>
+</div>
