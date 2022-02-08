@@ -56,3 +56,24 @@ animation: PuruPuru 2s forwards, fadeOut 10s linear forwards;
     opacity: 0;
   }
 }
+
+
+footer {
+ margin-top: auto;
+ .footer-wrap {
+   height: 100px;
+   width: 100%;
+  }
+
+  .footer-logo  {
+    width: 100%;
+    min-width: 100%;
+    overflow: hidden;
+  }
+  p {
+    margin-top: 32px;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: bottom;
+  }
+}
