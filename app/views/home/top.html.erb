@@ -5,8 +5,21 @@
         <div class="top-logo-inner">
           <%= image_tag("/images/logo_speaking.png", height: 45) %>
           <br>
-          <h5>Enjoy Speaking<br>Pronuntiation APP</h5>
-          <h1>Welcome to Tvoz</h1>
+          <%if current_user %>
+            <p> Hello <%= current_user.name%>!</p> <br>
+            <p> Your  email is: <%= current_user.email%>!</p> <br>
+            <p> your Roll is: <%= current_user.role%>!</p> <br>
+            <p> Admin: <%= current_user.admin%>!</p> <br>
+            <hr>
+            <%= link_to destroy_user_session_path, method: :delete, class: 'order-3 pr-2 bd-highlight' do %>
+              <i class="fas fa-sign-out-alt"> Logout</i>
+            <% end %>
+          <% else %>
+            <h5>Enjoy Speaking<br>Pronuntiation APP</h5>
+            <h1>Welcome to Tvoz</h1>
+          <% end %>
+          <br>
+          <hr>
         </div>
       </div>
     </div>

@@ -1,0 +1,69 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+
+
+  <%if current_user %>
+    <p> Hello <%= current_user.name%>!</p> <br>
+    <p> Your  email is: <%= current_user.email%>!</p> <br>
+    <p> your Roll is: <%= current_user.role%>!</p> <br>
+    <p> Admin: <%= current_user.admin%>!</p> <br>
+  <% else %>
+    <h5>Enjoy Speaking<br>Pronuntiation APP</h5>
+    <h1>Welcome to Tvoz</h1>
+  <% end %>
+
+
+<table class="table">
+  <tbody>
+    <% @users.each do |user| %>
+    <tr class="user_management">
+      <td class= "text-justify"><%= user.name %></td>
+      <%# <td class= "text-justify"><%= user.avatar %>
+      <%# </td>  %>
+      <td class= "text-justify"><%= user.email %></td>
+      <td class= "text-justify"><%= user.role %></td>
+      <td class= "text-justify"><%= user.admin? ? 'Admin' : 'none' %></td>
+      <td class= "text-justify">
+        <%= link_to "Show", user_path(user.id),  class: "btn btn-outline-primary show-btn" %>
+        <%= link_to "Edit", edit_user_path(user.id), class: "btn btn-outline-success edit-btn" %>
+        <%= link_to "Delete", user_path(user.id), method: :delete, data: {confirm: "User「#{user.name}」will be delete, Are you sure?'"}, id: "delete_button", class: "btn btn-outline-danger delete-btn" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Image</th>
+      <th>Audio record</th>
+      <th>Audio</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= task.image %></td>
+        <td><%= task.audio_record %></td>
+        <td><%= task.audio %></td>
+        <td><%= task.user_id %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task', new_task_path %>
+<br>
+<%= link_to 'Home top', root_path %>
