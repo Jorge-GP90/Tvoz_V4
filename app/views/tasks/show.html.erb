@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Title:</strong>
@@ -22,7 +21,12 @@
 
 <p>
   <strong>Audio:</strong>
-  <%= @task.audio %>
+  <%#  CHANGE THE UNLESS WHEN YOU FIX THE ISSUE OF THE AUDIO FILE %>
+  <% unless @task.audio?  %>
+    <audio controls src="<%= @task.audio.url %>"></audio>
+  <% else %>
+    <div>There is no file yet</div>
+  <% end %>  
 </p>
 
 <p>
@@ -31,4 +35,8 @@
 </p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to 'Back', tasks_path %> |
+<%= link_to root_path, class: 'order-2 pr-2 bd-highlight' do %>   
+  <i class="fa-solid fa-house">Home</i> |
+<% end %> 
+

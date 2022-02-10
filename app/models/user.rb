@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # mount_uploader :avatar, AvatarUploader
+
+
   validates :name, presence: true, length: { maximum: 50 }
   has_many :tasks, dependent: :destroy
   has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
@@ -9,33 +12,29 @@ class User < ApplicationRecord
   require './app/roles/role'
   enum role: Role.options_for_enum
  
-  # after_initialize :set_default_role, :if => :new_record?
-  # def set_default_role
-  #   self.role ||= :student
-  # end
-   
-  # after_update :ensure_teacher
-  # after_destroy :ensure_teacher
-  
-  # def ensure_teacher
-  #   if User.where(role: :teacher)? || User.where(admin: true).count.zero?
-  #     raise "This account cannot be deleted"
-  #   end
-  # end
-  
-  # enum role: [:student, :teacher]
-  # after_initialize :set_default_role, :if => :new_record?
-  # def set_default_role
-  #   self.role = 0 if role.nil?
-  # end
-  
-  # after_initialize :set_defaults
-
-  # private
-  # def set_defaults
-  #   self.role = 0 if role.nil?
-  # end
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+
+  def follow(user)
+    follower.create!(followed_id: user.id)
+  end
+
+  def unfollow(user)
+    follower.find_by(followed_id: user.id).destroy
+  end
+
+  def following?(user)
+    follower.find_by(followed_id: user.id)
+  end
+
+  def connected?(user)
+   if follower.find_by(followed_id: user.id) && followed.find_by(follower_id: user.id)
+    relationship.status :true
+   else
+    relationship.status :false
+   end
+  end
+
 end

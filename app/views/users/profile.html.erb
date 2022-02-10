@@ -1,34 +1,29 @@
-<h1>Users#profile</h1>
-<p>Find me in app/views/users/profile.html.erb</p>
+
+<h1>Profile</h1>
 
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Image</th>
-      <th>Audio record</th>
-      <th>Audio</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
+  <%if current_user %>
+    <p> Hello <%= current_user.name%>!</p> <br>
+    <p> Your  email is: <%= current_user.email %>!</p> <br>
+    <p> your Roll is: <%= current_user.role %>!</p> <br>
+    <p> Admin: <%= current_user.admin %>!</p> <br>
+  <% else %>
+    <h5>Enjoy Speaking<br>Pronuntiation APP</h5>
+    <h1>Welcome to Tvoz</h1>
+  <% end %>
+
+
+<table class="table">
   <tbody>
-    <% @current_user.task.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.content %></td>
-        <td><%= task.image %></td>
-        <td><%= task.audio_record %></td>
-        <td><%= task.audio %></td>
-        <td><%= task.user_id %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <tr class="user_management">
+      <td class= "text-justify"><%= current_user.name %></td>
+      <%# <td class= "text-justify"><%= current_user.avatar %>
+      <%# </td>  %>
+      <td class= "text-justify"><%= current_user.email %></td>
+      <td class= "text-justify"><%= current_user.role %></td>
+      <td class= "text-justify"><%= current_user.admin? ? 'Admin' : 'none' %></td>
+    </tr>
   </tbody>
 </table>
 
@@ -36,3 +31,5 @@
 <br>
 
 <%= link_to 'New Task', new_task_path %>
+<br>
+<%= link_to 'Home', root_path %>

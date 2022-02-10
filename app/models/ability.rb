@@ -9,9 +9,4 @@ class Ability
     can :manage, :all
   end
 
-  # def profile(user.role)
-  #   return unless user.role :teacher || user&.admin?
-  #   can :access, :
-  #   can :manage, :all
-  # end
 end

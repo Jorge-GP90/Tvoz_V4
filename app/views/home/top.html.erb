@@ -10,9 +10,19 @@
             <p> Your  email is: <%= current_user.email%>!</p> <br>
             <p> your Roll is: <%= current_user.role%>!</p> <br>
             <p> Admin: <%= current_user.admin%>!</p> <br>
+            <p>
+              <%= link_to profile_user_path(current_user.id) do %>   
+                <i class="fas fa-users"> Profile</i>
+              <% end %>  
+            </p>
             <hr>
+            <br>
             <%= link_to destroy_user_session_path, method: :delete, class: 'order-3 pr-2 bd-highlight' do %>
               <i class="fas fa-sign-out-alt"> Logout</i>
+            <% end %>
+
+            <%= link_to tasks_path, class: 'order-2 pr-2 bd-highlight' do %>   
+               <i class="fa-solid fa-house">Tvoz list</i> |
             <% end %>
           <% else %>
             <h5>Enjoy Speaking<br>Pronuntiation APP</h5>

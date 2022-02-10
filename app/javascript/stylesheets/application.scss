@@ -58,11 +58,64 @@ animation: PuruPuru 2s forwards, fadeOut 10s linear forwards;
 }
 
 
+header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: purple;
+  color: white;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  z-index: 100;
+  transition: 1s;
+  .logo {
+    height: 30px;
+  }
+  .fas {
+    font-size: 0.9rem;
+  }
+  ul{
+    list-style: none;
+  }
+}
+
+@media screen and (min-width:769px) {
+  header.after-scroll {
+    align-items: center;
+    transform:translateY(-40px);
+    .logo {
+      margin-top: 10px;
+      height: 50px;
+    }
+    nav {
+      margin-top: 35px;
+    }
+    .nav-toggle {
+      margin-top: 35px;
+      }
+  }
+}
+
+
+
+
+
+// BOTTOM PART
+
 footer {
- margin-top: auto;
- .footer-wrap {
-   height: 100px;
-   width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+  margin-top: auto;
+  .footer-wrap {
+    height: 100px;
+    width: 100%;
   }
 
   .footer-logo  {
@@ -77,3 +130,28 @@ footer {
     vertical-align: bottom;
   }
 }
+
+
+.copywright {
+  margin-bottom: 0;
+  text-align: center;
+  color: $kinari;
+}
+
+// PC display
+@media screen and (min-width:769px) {
+  .copywright {
+    height: 80px;
+    padding-top: 55px;
+  }
+}
+
+// phone display
+@media screen and (max-width:768px) {
+  .copywright {
+    height: 35px;
+    padding-top: 10px;
+  }
+}
+
+

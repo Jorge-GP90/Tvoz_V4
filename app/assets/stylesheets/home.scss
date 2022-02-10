@@ -1,48 +1,10 @@
 @import "custom";
 
 .background {
-  background-image: url("/images/sky-bgnd.jpg");
+  background-image: url("/images/sky_bgnd.jpg");
   background-size: cover;
   background-position: center top;
 }
-
-header {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 100px;
-  z-index: 100;
-  background-color: #fff;
-  transition: 1s;
-  .logo {
-    height: 65px;
-  }
-  .fas {
-    font-size: 0.9rem;
-  }
-}
-
-@media screen and (min-width:769px) {
-  header.after-scroll {
-    align-items: center;
-    transform:translateY(-40px);
-    .logo {
-      margin-top: 10px;
-      height: 50px;
-    }
-    nav {
-      margin-top: 35px;
-    }
-    .nav-toggle {
-      margin-top: 35px;
-      }
-  }
-}
-
-
-
-
-
 
 
 
@@ -108,33 +70,6 @@ header {
   }
 }
 
-
-// BOTTOM PART
-
-
-
-
-.copywright {
-  margin-bottom: 0;
-  text-align: center;
-  color: $kinari;
-}
-
-// PC display
-@media screen and (min-width:769px) {
-  .copywright {
-    height: 80px;
-    padding-top: 55px;
-  }
-}
-
-// phone display
-@media screen and (max-width:768px) {
-  .copywright {
-    height: 35px;
-    padding-top: 10px;
-  }
-}
 
 .translucent-box {
   margin-top: 50px;

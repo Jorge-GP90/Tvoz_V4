@@ -1,15 +1,18 @@
 class UsersController < ApplicationController
   # before_action :authenticate_user!
-  before_action :set_user, only: %i[show]
+  before_action :set_user, only: %i[show profile community]
+  # include UsersHelper
 
   def show
-    @users = User.select(:id, :name, :email, :admin, :role, :avatar).order(created_at: :DESC)
+    @user = User.find(params[:id])
+    # @users = User.select(:id, :name, :email, :admin, :role, :avatar).order(created_at: :DESC)
     @tasks = Task.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC)
   end
 
   def profile
     if @user.id == current_user.id || current_user.admin?
-      @tasks = current_user.tasks.select(:id, :title, :content, :image, :audio_record, :audio, :created_at).order(created_at: :DESC)
+      @users = User.select(:id, :name, :email, :admin, :role, :avatar).order(created_at: :DESC)
+      @tasks = current_user.tasks.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC)
     else
       redirect_to tasks_path
     end
@@ -20,7 +23,8 @@ class UsersController < ApplicationController
   end
   
   def community
-    @users = User.select(:id, :name, :email, :admin, :role).order(created_at: :DESC)
+    @users = User.select(:id, :name, :email, :role, :avatar, :admin).order(created_at: :DESC)
+    @tasks = current_user.tasks.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC)
   end
 
   private

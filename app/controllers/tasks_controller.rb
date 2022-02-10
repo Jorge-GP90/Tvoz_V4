@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
-
+  # include TasksHelper
   # GET /tasks or /tasks.json
   def index
-    @tasks = current_user.tasks.select(:id, :title, :content, :image, :audio_record, :audio, :created_at).order(created_at: :DESC)
+    @tasks = current_user.tasks.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -64,6 +64,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :content, :image, :audio_record, :audio, :user_id)
+      params.require(:task).permit(:title, :content, :image, :audio_record, :audio, :user_id, :created_at )
     end
 end

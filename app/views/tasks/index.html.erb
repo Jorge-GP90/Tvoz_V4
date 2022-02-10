@@ -23,7 +23,7 @@
         <td><%= task.image %></td>
         <td><%= task.audio_record %></td>
         <td><%= task.audio %></td>
-        <td><%= task.user_id %></td>
+        <td><%= task.user_id %></td> 
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -34,4 +34,14 @@
 
 <br>
 
-<%= link_to 'New Task', new_task_path %>
+
+<%= link_to new_task_path, class: 'order-2 pr-2 bd-highlight' do %>
+  <i class="fas fa-plus"> New Tvoz</i> |
+<% end %> 
+<%= link_to root_path, class: 'order-2 pr-2 bd-highlight' do %>   
+  <i class="fa-solid fa-house">Home</i> |
+<% end %>  
+<%= link_to profile_user_path(current_user.id) do %>   
+  <i class="fa-solid fa-user">Profile</i>
+<% end %>  
+ 

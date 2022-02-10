@@ -35,5 +35,8 @@
 yarn-debug.log*
 .yarn-integrity
 
-#dotenv-rails
+# dotenv-rails
 .env
+
+# public/uploads
+/public/uploads
