@@ -17,14 +17,12 @@ class RelationshipsController < ApplicationController
   
   def connected?(user)
     @user = Relationship.find_by(followed_id: params[:id]).followed
-    current_user.(@user)
+    current_user.connected(@user)
     redirect_to :back 
   end
   
   private
   def find_user
-    @user = User.find(params[:user_id])
-      
+    @user = User.find(params[:user_id])  
   end
-  
 end

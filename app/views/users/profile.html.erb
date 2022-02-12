@@ -13,6 +13,7 @@
     <h1>Welcome to Tvoz</h1>
   <% end %>
 
+<hr>
 
 <table class="table">
   <tbody>
@@ -22,14 +23,83 @@
       <%# </td>  %>
       <td class= "text-justify"><%= current_user.email %></td>
       <td class= "text-justify"><%= current_user.role %></td>
+      <td class= "text-justify">Following:  <%= current_user.follower_user.count %> </td>
+      <td class= "text-justify">Followers:  <%= current_user.followed_user.count %></td>
       <td class= "text-justify"><%= current_user.admin? ? 'Admin' : 'none' %></td>
     </tr>
   </tbody>
 </table>
 
+<hr>
 
+<table>
+  <thead>
+    <tr>
+      <th>Follower id</th>
+      <th>Name</th>
+      <th>Role</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% current_user.follower_user.each do |rel| %>
+      <tr>
+        <td><%= rel.id %></td>
+        <td><%= rel.name %></td>
+        <td><%= rel.role %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th>Follower Id</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% current_user.followed.each do |rel| %>
+      <tr>
+        <td><%= rel.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<hr>
+
+<table>
+  <thead>
+    <tr>
+      <th> My Follow Id</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% current_user.follower.each do |rel| %>
+      <tr>
+        <td><%= rel.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<hr>
 <br>
 
-<%= link_to 'New Task', new_task_path %>
+
+
+
+<hr>
 <br>
+
+
+<%= link_to 'Edit', edit_user_registration_path(current_user.id) %> |
+<%= link_to 'community', community_user_path(current_user.id) %> | 
 <%= link_to 'Home', root_path %>

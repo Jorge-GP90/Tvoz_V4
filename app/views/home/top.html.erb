@@ -1,94 +1,54 @@
 <div class="container-fluid">
   <div class="background">
     <div class="top-front">  
-      <div class="top-logo">
-        <div class="top-logo-inner">
-          <%= image_tag("/images/logo_speaking.png", height: 45) %>
-          <br>
-          <%if current_user %>
-            <p> Hello <%= current_user.name%>!</p> <br>
-            <p> Your  email is: <%= current_user.email%>!</p> <br>
-            <p> your Roll is: <%= current_user.role%>!</p> <br>
-            <p> Admin: <%= current_user.admin%>!</p> <br>
-            <p>
-              <%= link_to profile_user_path(current_user.id) do %>   
-                <i class="fas fa-users"> Profile</i>
-              <% end %>  
-            </p>
-            <hr>
-            <br>
-            <%= link_to destroy_user_session_path, method: :delete, class: 'order-3 pr-2 bd-highlight' do %>
-              <i class="fas fa-sign-out-alt"> Logout</i>
-            <% end %>
-
-            <%= link_to tasks_path, class: 'order-2 pr-2 bd-highlight' do %>   
-               <i class="fa-solid fa-house">Tvoz list</i> |
-            <% end %>
-          <% else %>
-            <h5>Enjoy Speaking<br>Pronuntiation APP</h5>
-            <h1>Welcome to Tvoz</h1>
-          <% end %>
-          <br>
-          <hr>
+      <div class="top-logo align-item-center">
+        <div class="align-middle">
+          <%= image_tag("/images/sky_bgnd.jpg", height: 100) %>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-1 col-md-1 col-lg-1"></div>
+    <div class="content">
+      <div class="col-sm-1 col-md-1 col-lg-1">
+      </div>
       <div class="col-sm-10 col-md-10 col-lg-10">
-        <div class="translucent-box">
-          <p>explanation box</p>
-        </div>
-        <div class="translucent-box">
-          <p>explanation box</p>
-        </div>
-        <div class="translucent-box">
-          <p>explanation box</p>
-        </div>
-        <div class="translucent-box">
-          <p>explanation box</p>
-        </div>
-        <div class="translucent-box">
-          <p>explanation box</p>
-        </div>
-        <div class="translucent-box">
-          <p>explanation box</p>
-        </div>
-        <div class="translucent-box">
-          <p>explanation box</p>
-        </div>
-        <div class="translucent-box">
-          <p>explanation box</p>
-        </div>
-        <div class="translucent-box">
-          <p>explanation box</p>
-        </div>
-        <div class="translucent-box right mb-4">
+        <div class="box right mb-4">
           <p>explanation box</p>
         </div>
         <% if user_signed_in? %>
         <div class="top-bottom">
           <div class="after-login">
-            <p>Welcome back</p>
+            <p>Welcome <%= current_user.name%>!</p>
+            <p> Your  email is: <%= current_user.email%>!</p> <br>
+            <p> your Roll is: <%= current_user.role%>!</p> <br>
+            <p> Admin: <%= current_user.admin%>!</p> <br>
             <div class="d-flex justify-content-center">
-              <%= link_to 'Tvoz list', '#', class: 'm-3' %>
+              <%= link_to community_user_path(current_user.id), class: 'm-3' do %> 
+                <i class="fas fa-users"> </i>
+              <% end %> 
             </div>
             <p><small>Aprendamos</small></p>
           </div>
         </div>
         <% else %>
           <div class="top-bottom">
+            <div class="box right mb-4">
+              <h1>Welcome to Tvoz</h1>
+              <h5>Enjoy Speaking<br>Pronuntiation APP</h5>
+            </div>
             <div class="links d-flex justify-content-center">
-              <div class="transition-btn">
-                <%= link_to 'Login', new_user_session_path %>
+              <div class="ml-3">
+                <%= link_to new_user_session_path, class: 'm-3' do %>
+                  <i class="fas fa-sign-in-alt"> Login</i>
+                <% end %>
               </div>
-              <div class="ml-3 transition-btn">
-                <%= link_to 'Sign up', new_user_registration_path %>
+              <div class="ml-3">
+                <%= link_to new_user_registration_path, class: 'm-3' do %>
+                  <i class="fas fa-user-plus">Sign up</i>
+                <% end %>
               </div>
             </div>
           </div>
         <% end %>
-        <p class="copywright"><small>© 2022 TVOZ All rights reserved.</small></p>
       </div>
       <div class="col-sm-1 col-md-1 col-lg-1"></div>
     </div>

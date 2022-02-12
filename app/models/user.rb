@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
   has_many :followed, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
-  has_many :following_user, through: :follower, source: :followed
+  has_many :followed_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
 
   require './app/roles/role'
@@ -29,12 +29,33 @@ class User < ApplicationRecord
     follower.find_by(followed_id: user.id)
   end
 
-  def connected?(user)
-   if follower.find_by(followed_id: user.id) && followed.find_by(follower_id: user.id)
-    relationship.status :true
-   else
-    relationship.status :false
-   end
+
+
+
+  # ############################
+  def follower?(user)
+    followed.find_by(follower_id: self.user.id)
   end
+
+  def connected?(user)
+    request = follower.find_by(followed_id: user.id)
+    request_accepted = followed.find_by(follower_id: user.request.find_by(followed_id: user.id))
+    if request == request_accepted 
+    relationships.status :true
+    else
+    relationships.status :false
+    end
+  end
+
+  def connected?(user)
+    connected = []
+    user.follower.includes(:follower).each { |f1|
+      f1.follower.each {
+        |f2| connected << f1.id  if f2.id == user.id
+      }
+    }
+    connected
+  end
+
 
 end

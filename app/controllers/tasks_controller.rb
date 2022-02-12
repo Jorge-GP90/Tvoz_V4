@@ -1,6 +1,10 @@
 class TasksController < ApplicationController
+  # load_and_authorize_resource
   before_action :set_task, only: %i[ show edit update destroy ]
   # include TasksHelper
+
+
+  
   # GET /tasks or /tasks.json
   def index
     @tasks = current_user.tasks.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC)
