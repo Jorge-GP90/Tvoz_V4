@@ -4,25 +4,41 @@ class RelationshipsController < ApplicationController
 
 
   def create
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     current_user.follow(@user)
-    redirect_to :back 
+    respond_to do |format|
+      format.js { render :follow }
+      format.html { redirect_to community_url }
+    end
+    # if @user.follower_user.include?(current_user)
+    #   Relationship.find_by(followed_id: params[:id]).update(status: true)
+    # redirect_to :back 
   end
 
   def destroy
     @user = Relationship.find_by(followed_id: params[:id]).followed
     current_user.unfollow(@user)
-    redirect_to :back 
+    respond_to do |format|
+      format.js { render :unfollow }
+      format.html { redirect_to community_url }
+    end
+    # redirect_to :back 
   end
   
-  def connected?(user)
-    @user = Relationship.find_by(followed_id: params[:id]).followed
-    current_user.connected(@user)
-    redirect_to :back 
+
+  def self.connect(followed)
+    user = User.find(followed.user_id)
+    if user.follower_user.include?(current_user)
+    current_user.follow(@user)
+    end
+    respond_to do |format|
+      format.js { render :connect }
+      format.html { redirect_to community_url }
+    end
   end
   
-  private
-  def find_user
-    @user = User.find(params[:user_id])  
-  end
+  # private
+  # def find_user
+  #   @user = User.find(params[:relationship][:user_id])  
+  # end
 end

@@ -16,93 +16,21 @@
 
 @import '~bootstrap/scss/bootstrap';
 @import '/stylesheets/custom';
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
-html, body {
+html, body{
   height: 100%;
-  width: 100%;
-  background-color: $carmen;
-  color: $black;
+  width:100%;
+  font-family: 'Poppins', sans-serif;
+  color: #222;
 }
 
-.outer-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-header {
-  width: 100%;
-  z-index: 100;
-  align-items: center;
-  
-}
 
 .navbar{
-  align-items: center; 
-
-  .nav-item {
-
-  }
-  .fa-solid {
-    font-size: 0.9rem;
-  }
-   .fas {
-    font-size: 0.9rem;
-  }
+    padding: .8rem;
 }
-
-@media screen and (min-width:769px) {
-  header.after-scroll {
-    align-items: center;
-    transform:translateY(-40px);
-    .logo {
-      margin-top: 10px;
-      height: 50px;
-    }
-    .navbar {
-      display: none;
-      position: fixed;
-      z-index: 2;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
-
-@media screen and (max-width:768px){
-  nav {
-    display: none;
-    /* position: fixed; */
-    z-index: 2;
-    top: 0;
-    left: 0;
-    font-size: 1.5rem;
-    background: $black;
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    transition: opacity .6s ease, visibility .6s ease;
-    ul {
-      margin: 0 auto;
-      padding-top: 100px;
-      width: 100%;
-      vertical-align: middle;
-      li {
-        list-style-type: none;
-        padding: 0;
-        width: 100%;
-        transition: .4s all;
-        &:last-child {
-          padding-bottom: 0;
-        }
-        &:hover {
-          background: $grey;
-        } 
-      }
-    }
-  }
+.navbar-nav li{
+    paddig-right: 20px;
 }
 
 
@@ -147,16 +75,3 @@ animation: PuruPuru 2s forwards, fadeOut 10s linear forwards;
   }
 }
 
-footer {
-  margin-top: auto;
-  .footer-wrap {
-    height: 100px;
-    width: 100%;
-  }
-  p {
-    margin-top: 32px;
-    font-size: 12px;
-    text-align: center;
-    vertical-align: bottom;
-  }
-}

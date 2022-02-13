@@ -30,8 +30,11 @@ class UsersController < ApplicationController
   end
   
   def community
-    @users = User.select(:id, :name, :email, :role, :avatar, :admin).order(created_at: :DESC)
+    @users = User.select(:id, :name, :email, :role, :avatar, :admin ).order(created_at: :DESC)
     @tasks = current_user.tasks.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC)
+    @followed = current_user.follower.includes(:followed).order(created_at: :DESC)
+    @follower = current_user.followed.includes(:follower).order(created_at: :DESC)
+    # @connect = @followed.follower_user.include(current_user).order(created_at: :DESC)
   end
 
   private

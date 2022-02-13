@@ -1,9 +1,8 @@
-<h1>Users#teachers</h1>
+<h1>User#<%= @user.name %> </h1>
 
 
 <table class="table">
   <tbody>
-    <%# <% @users.each do |user| %> 
     <tr class="user_management">
       <%# <th class= "text-justify">  %>
         <%# <div class=""> %>
@@ -16,18 +15,28 @@
         <p><%= @user.email %></p>
         <p><%= @user.role %></p>
         <p><%= @user.admin? ? 'Admin' : 'none' %></p>
+        
       </th>
       <th class= "text-justify">
-        <%= link_to "Edit", edit_user_registration_path(@user.id), class: "btn btn-outline-success edit-btn" %>
-        <%= link_to "Delete", user_registration_path(@user.id), method: :delete, data: {confirm: "User「#{@user.name}」will be delete, Are you sure?'"}, id: "delete_button", class: "btn btn-outline-danger delete-btn" %>
+        <%= button_to "follow", relationships_path(user_id: @user.id), method: :post, class: "btn btn-outline-primary show-btn" %>
+      <div class="follow-part">
+          <% unless current_user.id == @user.id %>
+            <span id="follow-part">
+              <%# <%= render 'relationships/follow', user: @user %> 
+            </span>
+          <% end %>
+      </div>
+
+        <%= link_to community_user_path(current_user.id), class: 'nav-link' do %> 
+              <i class="fas fa-users"> </i>
+        <% end %> 
       </th>
     </tr>
-    <%# <% end %> 
   </tbody>
 </table>
 
 <%# ONLY TEACHERS %>
-
+<% if current_user.role == "teacher" %>
 <table>
   <thead>
     <tr>
@@ -41,7 +50,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @user.tasks.each do |task| %>
       <tr>
         <th><%= task.title %></th>
         <th><%= task.content %></th>
@@ -58,8 +67,10 @@
   </tbody>
 </table>
 
-
 <br>
-
 <%= link_to 'New Task', new_task_path %> |
-<%= link_to 'Home', root_path %>
+
+<% end %>
+
+
+

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
   
   resources :tasks
-  resources :relationships, only: %i[create destroy connected]
+  resources :relationships, only: %i[create destroy connect]
 
 
 end

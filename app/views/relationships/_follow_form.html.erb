@@ -1,0 +1,18 @@
+
+
+<div id="follow_form_<%= user.id %>" >
+  <% unless current_user.following?(user) %>
+    <div class="follow-btn">
+      <%= link_to relationships_path(id: user.id), method: :post, remote: true do %>
+        <button class=" justify-content-center align-items-center"><%=class: "unfollow") %> unfollow</button>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="follow-btn">
+      <%= link_to relationship_path(id: user.id), method: :delete, remote: true do %>
+      <button class="justify-content-center align-items-center"><%= class: "follow") %> follow</button>
+      <% end %>
+    </div>
+  <% end %>
+  <p class="follower-count"> followers <%= @user.follower_user.count %></p>
+</div>

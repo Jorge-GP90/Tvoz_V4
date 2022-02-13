@@ -29,33 +29,7 @@ class User < ApplicationRecord
     follower.find_by(followed_id: user.id)
   end
 
-
-
-
-  # ############################
-  def follower?(user)
-    followed.find_by(follower_id: self.user.id)
+  def connected?(other)
+    self.following?(other) && other.following?(self) 
   end
-
-  def connected?(user)
-    request = follower.find_by(followed_id: user.id)
-    request_accepted = followed.find_by(follower_id: user.request.find_by(followed_id: user.id))
-    if request == request_accepted 
-    relationships.status :true
-    else
-    relationships.status :false
-    end
-  end
-
-  def connected?(user)
-    connected = []
-    user.follower.includes(:follower).each { |f1|
-      f1.follower.each {
-        |f2| connected << f1.id  if f2.id == user.id
-      }
-    }
-    connected
-  end
-
-
 end
