@@ -1,76 +1,77 @@
-<h1>User#<%= @user.name %> </h1>
 
-
-<table class="table">
-  <tbody>
-    <tr class="user_management">
-      <%# <th class= "text-justify">  %>
-        <%# <div class=""> %>
-          <%# <%= image_tag set_avatar, class: 'avatar-image-top'%> 
-        <%# </div> %>
-          <%# <%= image_tag set_avatar, class: 'avatar-image'%> 
-      <%# </th> %>
-      <th class= "text-justify">
-        <p><%= @user.name %></p>
-        <p><%= @user.email %></p>
-        <p><%= @user.role %></p>
-        <p><%= @user.admin? ? 'Admin' : 'none' %></p>
-        
-      </th>
-      <th class= "text-justify">
-        <%= button_to "follow", relationships_path(user_id: @user.id), method: :post, class: "btn btn-outline-primary show-btn" %>
-      <div class="follow-part">
-          <% unless current_user.id == @user.id %>
+<div class="container-fluid padding" id="loggin-top">
+  <div class="row justify-content-center">
+    <div class="col-md-4" id="loggin-inner-top">
+      <div class="card">
+        <img class="card-img-top" src="/images/default_avatar.png">
+        <div class="card-body text-center">
+          <h3 class="card-title"> <%= @user.name %> </h3>
+          <p clas="card-text"><%= @user.name %></p><br>
+          <p clas="card-text"><%= @user.email %></p><br>
+          <p clas="card-text"><%= @user.role %></p><br>
+          <p clas="card-text"><%= @user.admin? ? 'Admin' : 'none' %></p><br>
+          <%= button_to "follow", relationships_path(user_id: @user.id), method: :post, class: "btn btn-outline-primary show-btn" %>
+          <div class="follow-part">
+            <% unless current_user.id == @user.id %>
             <span id="follow-part">
               <%# <%= render 'relationships/follow', user: @user %> 
             </span>
-          <% end %>
+            <% end %>
+          </div>
+          <%= link_to community_user_path(current_user.id), class: 'nav-link' do %> 
+            <i class="fas fa-users"> </i>
+          <% end %> 
+        </div>
       </div>
+    </div>
+  </div>
+</div>
 
-        <%= link_to community_user_path(current_user.id), class: 'nav-link' do %> 
-              <i class="fas fa-users"> </i>
-        <% end %> 
-      </th>
-    </tr>
-  </tbody>
-</table>
+
 
 <%# ONLY TEACHERS %>
 <% if current_user.role == "teacher" %>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Image</th>
-      <th>Audio record</th>
-      <th>Audio</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @user.tasks.each do |task| %>
-      <tr>
-        <th><%= task.title %></th>
-        <th><%= task.content %></th>
-        <th><%= task.image %></th>
-        <th><%= task.audio_record %></th>
-        <th><%= task.audio %></th>
-        <th><%= task.user_id %></th>
-        <th><%= link_to 'Show', task %></th>
-        <th><%= link_to 'Edit', edit_task_path(task) %></th>
-        <th><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></th>
-      </tr>
+<div class="container-fluid padding" id="loggin-top">
+  <div class="row justify-content-center">
+    <div class="col-md-4" id="loggin-inner-top">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Image</th>
+            <th>Audio record</th>
+            <th>Audio</th>
+            <th>User</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.tasks.each do |task| %>
+            <tr>
+              <th><%= task.title %></th>
+              <th><%= task.content %></th>
+              <th><%= task.image %></th>
+              <th><%= task.audio_record %></th>
+              <th><%= task.audio %></th>
+              <th><%= task.user_id %></th>
+              <%# HERE the new task is for this user %>
+              <%# <th><%= link_to 'New Task', new_task_path %>
+               <%# </th> %>
+              <th><%= link_to 'Show', task %></th>
+              <th><%= link_to 'Edit', edit_task_path(task) %></th>
+              <th><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<% end %> 
 
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-<%= link_to 'New Task', new_task_path %> |
 
-<% end %>
 
 
 

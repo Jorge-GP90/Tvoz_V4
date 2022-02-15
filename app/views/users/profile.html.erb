@@ -1,97 +1,134 @@
+<%# <h1>Profile</h1> %>
 
-<h1>Profile</h1>
-
-
-
-  <%if current_user %>
-    <p> Hello <%= current_user.name%>!</p> <br>
-    <p> Your  email is: <%= current_user.email %>!</p> <br>
-    <p> your Roll is: <%= current_user.role %>!</p> <br>
-    <p> Admin: <%= current_user.admin %>!</p> <br>
-  <% else %>
-    <h5>Enjoy Speaking<br>Pronuntiation APP</h5>
-    <h1>Welcome to Tvoz</h1>
-  <% end %>
-
-<hr>
-
-<table class="table">
-  <tbody>
-    <tr class="user_management">
-      <td class= "text-justify"><%= current_user.name %></td>
-      <%# <td class= "text-justify"><%= current_user.avatar %>
-      <%# </td>  %>
-      <td class= "text-justify"><%= current_user.email %></td>
-      <td class= "text-justify"><%= current_user.role %></td>
-      <td class= "text-justify">Following:  <%= current_user.follower_user.count %> </td>
-      <td class= "text-justify">Followers:  <%= current_user.followed_user.count %></td>
-      <td class= "text-justify"><%= current_user.admin? ? 'Admin' : 'none' %></td>
-    </tr>
-  </tbody>
-</table>
-
-<hr>
-
-<table>
-  <thead>
-    <tr>
-      <th>Follower id</th>
-      <th>Name</th>
-      <th>Role</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% current_user.follower_user.each do |rel| %>
-      <tr>
-        <td><%= rel.id %></td>
-        <td><%= rel.name %></td>
-        <td><%= rel.role %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%# <%= render 'follow_form', user: user, id: 'myfollows'%> 
-<hr>
-
-<table>
-  <thead>
-    <tr>
-      <th>Follower Id</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% current_user.followed.each do |rel| %>
-      <tr>
-        <td><%= rel.id %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container-fluid padding" id="loggin-top">
+  <div class="row justify-content-center">
+    <div class="col-md-4" id="loggin-inner-top">
+      <div class="card">
+        <img class="card-img-top" src="/images/default_avatar.png">
+        <div class="card-body text-center">
+          <h3 class="card-title">Hello <%= current_user.name%>!</h3><br> 
+          <p clas="card-text"><%= current_user.email %></p><br>
+          <p clas="card-text"><%= current_user.role %></p><br>
+          <p clas="card-text"><%= current_user.admin? ? 'Admin' : 'none' %></p><br>
+          <p class= "text-justify">Following:  <%= current_user.follower_user.count %> </p><br>
+          <p class= "text-justify">Followers:  <%= current_user.followed_user.count %></p><br>
+          
+          <%= button_to "follow", relationships_path(user_id: @user.id), method: :post, class: "btn btn-outline-primary show-btn" %>
+          <div class="follow-part">
+            <% unless current_user.id == @user.id %>
+            <span id="follow-part">
+              <%# <%= render 'relationships/follow', user: @user %> 
+            </span>
+            <% end %>
+          </div>
+          
+          <%= link_to community_user_path(current_user.id), class: 'nav-link' do %> 
+            <i class="fas fa-users"> </i>
+          <% end %> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-<hr>
 
-<table>
-  <thead>
-    <tr>
-      <th> My Follow Id</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% current_user.follower.each do |rel| %>
-      <tr>
-        <td><%= rel.id %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%# Follows table %>
+<hr class="my-4"> 
 
-<hr>
-<br>
+    <div class="container-fluid padding">
+      <div class="row padding">
+        <div class="col-lg-6 col-md-12">
+          <div class="card">
+            <div class="card-body">
+             <h4 class="card-title">My Followers Id</h4>
+             <div class="table-responsive"> 
+              <table class="table">
+                <tbody class="table-light">
+                  <% current_user.follower_user.each do |rel| %>
+                    <tr>
+                      <td clas="card-text">Follower id <br> <%= rel.id %></td>
+                      <td clas="card-text">Name <br><%= rel.name %></td>
+                      <td clas="card-text">Role <br><%= rel.role %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+             </div>
+              <%= link_to "#", type: "button", class:"btn btn-outline-secondary"  do %> 
+                Learn More
+              <% end %> 
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"> My follow id </h4>
+             <div class="table-responsive"> 
+              <table class="table">
+                <tbody class="table-light">
+                  <% current_user.follower.each do |rel| %>
+                    <tr>
+                      <td clas="card-text"><%= rel.id %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>  
+              <%= link_to "#", type: "button", class:"btn btn-outline-secondary"  do %> 
+                Learn More
+              <% end %> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="my-4"> 
+
+<%# My table task %>
+
+<div class="container-fluid padding" id="loggin-top">
+  <div class="row justify-content-center">
+    <div class="col-lg-12" id="loggin-inner-top">
+      <div class="table-responsive"> 
+        <table class="table">
+          <thead class="table-light">
+            <tr>
+              <th>Title</th>
+              <th>Content</th>
+              <th>Image</th>
+              <th>Audio record</th>
+              <th>Audio</th>
+              <th>User</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% current_user.tasks.each do |task| %>
+              <tr>
+                <th><%= task.title %></th>
+                <th><%= task.content %></th>
+                <th><%= task.image %></th>
+                <th><%= task.audio_record %></th>
+                <th><%= task.audio %></th>
+                <th><%= task.user_id %></th>
+                <%# HERE the new task is for this user %>
+                <%# <th><%= link_to 'New Task', new_task_path %>
+                 <%# </th> %>
+                <th><%= link_to 'Show', task %></th>
+                <th><%= link_to 'Edit', edit_task_path(task) %></th>
+                <th><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 
 
