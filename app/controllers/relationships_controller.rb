@@ -1,15 +1,16 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_user
+  # before_action :find_user
 
 
   def create
     @user = User.find(params[:user_id])
     current_user.follow(@user)
-    respond_to do |format|
-      format.js { render :follow }
-      format.html { redirect_to community_url }
-    end
+    redirect_to user_path(@user)
+    # respond_to do |format|
+    #   format.js { render :follow }
+    #   format.html { redirect_to community_url }
+    # end
     # if @user.follower_user.include?(current_user)
     #   Relationship.find_by(followed_id: params[:id]).update(status: true)
     # redirect_to :back 
@@ -20,7 +21,7 @@ class RelationshipsController < ApplicationController
     current_user.unfollow(@user)
     respond_to do |format|
       format.js { render :unfollow }
-      format.html { redirect_to community_url }
+      format.html { redirect_to user_path(@user) }
     end
     # redirect_to :back 
   end
@@ -31,14 +32,15 @@ class RelationshipsController < ApplicationController
     if user.follower_user.include?(current_user)
     current_user.follow(@user)
     end
-    respond_to do |format|
-      format.js { render :connect }
-      format.html { redirect_to community_url }
-    end
+    
+    # respond_to do |format|
+    #   format.js { render :connect }
+    #   format.html { redirect_to user_path(@user) }
+    # end
   end
   
-  # private
+  private
   # def find_user
-  #   @user = User.find(params[:relationship][:user_id])  
+  #   @user = User.find(params[:user_id])  
   # end
 end

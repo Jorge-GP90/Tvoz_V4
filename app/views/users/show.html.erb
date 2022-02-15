@@ -10,17 +10,25 @@
           <p clas="card-text"><%= @user.email %></p><br>
           <p clas="card-text"><%= @user.role %></p><br>
           <p clas="card-text"><%= @user.admin? ? 'Admin' : 'none' %></p><br>
-          <%= button_to "follow", relationships_path(user_id: @user.id), method: :post, class: "btn btn-outline-primary show-btn" %>
+          <% if current_user.following?(@user) %>
+            <%= button_to "unfollow", relationship_path(followed_id: @user.followed.find_by(follower_id: current_user.id).id), method: :delete, class: "btn btn-outline-primary show-btn" %>  
+          <% else %> 
+            <%= button_to "follow", relationships_path(user_id: @user.id), method: :post, class: "btn btn-outline-primary show-btn" %>
+            
+          <% end %>
           <div class="follow-part">
             <% unless current_user.id == @user.id %>
             <span id="follow-part">
               <%# <%= render 'relationships/follow', user: @user %> 
             </span>
             <% end %>
+            <% if current_user.connected?(@user) %>
+              <i class="fas fa-users"> </i>
+             <% end %>
           </div>
-          <%= link_to community_user_path(current_user.id), class: 'nav-link' do %> 
-            <i class="fas fa-users"> </i>
-          <% end %> 
+          <%# <%= link_to community_user_path(current_user.id), class: 'nav-link' do %> 
+            <%# <i class="fas fa-users"> </i> %>
+          <%# <% end %>  
         </div>
       </div>
     </div>
