@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tasks</h1>
+
+<div class="table-responsive"> 
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Image</th>
+        <th>Audio record</th>
+        <th>Audio</th>
+        <th>User</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= task.title %></td>
+          <td><%= task.content %></td>
+          <td><%= task.image %></td>
+          <td><%= task.audio_record %></td>
+          <td><%= task.audio %></td>
+          <td><%= task.user_id %></td> 
+          <td><%= link_to 'Show', task %></td>
+          <td><%= link_to 'Edit', edit_task_path(task) %></td>
+          <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+
+<%= link_to new_task_path, class: 'order-2 pr-2 bd-highlight' do %>
+  <i class="fas fa-plus"> New Tvoz</i> |
+<% end %> 
+<%= link_to root_path, class: 'order-2 pr-2 bd-highlight' do %>   
+  <i class="fa-solid fa-house">Home</i> |
+<% end %>  
+<%= link_to profile_user_path(current_user.id) do %>   
+  <i class="fa-solid fa-user">Profile</i>
+<% end %>  
+ 

@@ -4,6 +4,7 @@ module.exports = {
       jquery: 'jquery/src/jquery',
       React: 'react',
       ReactDOM: 'react-dom',
+      Popper: 'popper.js'
     }
   }
 }
