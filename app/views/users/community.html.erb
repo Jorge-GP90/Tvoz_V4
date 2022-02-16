@@ -26,7 +26,11 @@
       <tr class="user_management">
         <td class= "text-justify"><%= user.id %></td>
         <td class= "text-justify"><%= user.name %></td>
-        <td class= "text-justify"><%= user.avatar %></td>
+        <% if user.avatar.blank?%>
+          <td class= "text-justify"><img class="user_avatar" src="/images/default_avatar.png"></td>
+        <% else %>
+          <td class= "text-justify"><%= image_tag(user.avatar, width: 70) %></td>
+        <% end %>
         <td class= "text-justify"><%= user.email %></td>
         <td class= "text-justify"><%= user.role %></td>
         <td class= "text-justify"><%= user.admin? ? 'Admin' : 'none' %></td>

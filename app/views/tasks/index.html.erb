@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tasks</h1>
+<h1> <%= current_user.name%> Tasks</h1>
 
 <div class="table-responsive"> 
   <table class="table">
@@ -8,7 +8,7 @@
       <tr>
         <th>Topic</th>
         <th>Image</th>
-        <th>User</th>
+        <th>Created by</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -16,22 +16,30 @@
       <% @tasks.each do |task| %>
         <tr>
           <td><%= task.title %></td>
-          <% if task.image.attached? %>
-            <td><%= image_tag task.image.variant(resize: "70x70") %></td>
+          <% if task.image.variable? %>
+            <td><%= image_tag(task.image, width: 70) %></td>
           <% else %>
-            <td></td>
+            <td> no image </td>
           <% end %> 
-          <td><%= task.user_id %></td> 
-          <td><%= link_to 'Show', task %></td>
-          <td><%= link_to 'Edit', edit_task_path(task) %></td>
-          <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= task.user.name %></td> 
+          <% if current_user.role == "teacher" %>
+            <td><%= link_to 'Show', task %></td>
+            <td><%= link_to 'Edit', edit_task_path(task) %></td>
+            <td><%= button_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td><%= link_to 'Tvoz', edit_task_path(task) %></td>
+            <td></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
 <br>
-<%= paginate @tasks %>
+<div class="justify-content-center">
+  <h5><%= paginate @tasks %></h5>
+</div>
+<br>
 
 
 <%= link_to new_task_path, class: 'order-2 pr-2 bd-highlight' do %>

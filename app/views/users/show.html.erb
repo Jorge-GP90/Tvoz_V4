@@ -57,7 +57,8 @@
               <tr>
                 <td><%= task.title %></td>
                 <% if task.image.attached? %>
-                  <td><%= image_tag task.image.variant(resize: "70x70") %></td>
+                  <%# <td><%= image_tag task.image.variant(resize: "70x70") %>
+                  <%# </td> %>
                 <% else %>
                   <td></td>
                 <% end %> 
