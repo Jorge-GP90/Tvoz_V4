@@ -7,7 +7,8 @@ class TasksController < ApplicationController
   
   # GET /tasks or /tasks.json
   def index
-    @tasks = current_user.tasks.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC)
+    # @tasks = current_user.tasks.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id, :task_avatar).order(created_at: :DESC)
+    @tasks = Task.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -16,7 +17,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = current_user.tasks.new
+    @task = Task.new
   end
 
   # GET /tasks/1/edit
@@ -52,6 +53,8 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
+    @task.audio.purge
+    @task.image.purge
     @task.destroy
 
     respond_to do |format|
@@ -68,6 +71,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:title, :content, :image, :audio_record, :audio, :user_id, :created_at )
+      params.require(:task).permit(:title, :content, :image, :audio_record, :audio, :user_id, :created_at, :task_avatar )
     end
 end

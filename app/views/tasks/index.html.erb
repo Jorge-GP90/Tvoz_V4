@@ -6,11 +6,8 @@
   <table class="table">
     <thead class="table-dark">
       <tr>
-        <th>Title</th>
-        <th>Content</th>
+        <th>Topic</th>
         <th>Image</th>
-        <th>Audio record</th>
-        <th>Audio</th>
         <th>User</th>
         <th colspan="3"></th>
       </tr>
@@ -19,10 +16,11 @@
       <% @tasks.each do |task| %>
         <tr>
           <td><%= task.title %></td>
-          <td><%= task.content %></td>
-          <td><%= task.image %></td>
-          <td><%= task.audio_record %></td>
-          <td><%= task.audio %></td>
+          <% if task.image.attached? %>
+            <td><%= image_tag task.image.variant(resize: "70x70") %></td>
+          <% else %>
+            <td></td>
+          <% end %> 
           <td><%= task.user_id %></td> 
           <td><%= link_to 'Show', task %></td>
           <td><%= link_to 'Edit', edit_task_path(task) %></td>
