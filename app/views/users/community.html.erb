@@ -5,8 +5,11 @@
     <p> Meet the community and connect with all!</p> <br>
   
 
+
 <div class="table-responsive"> 
   <table class="table">
+
+  <%= paginate @users %>
     <thead class="table-dark">
       <tr>
         <th>User Id</th>
@@ -36,6 +39,8 @@
   </table>
 </div>
 
+
+<br>
 
 <br>
 <%= link_to 'New Task', new_task_path %> |

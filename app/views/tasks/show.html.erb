@@ -7,20 +7,9 @@
 
 <p>
   <strong>Audio:</strong>
-  <%#  CHANGE THE UNLESS WHEN YOU FIX THE ISSUE OF THE AUDIO FILE %>
-  <%# <% if @task.audio?  %> 
-  
   <% if @task.audio.attached? %>
     <audio controls src="<%= url_for(@task.audio)  %> "></audio>
-  <% end %>   
-    <%#  audio_tag @task.audio, controls: true, preload: "none" %> 
-    <%# <audio controls src="
-    <%#  @task.audio %> 
-    <%# "> %>
-    <%# </audio> %>
-  <%# <% else %> 
-    <%# <div>There is no file yet</div> %>
-  <%# <% end %>   
+  <% end %>    
 </p>
 
 <% if @task.content? %>
@@ -41,13 +30,8 @@
   <strong>Image:</strong>
   <% if @task.image.attached? %>
        <%= image_tag(@task.image, width: 500) %>
-  <%# <% else %> 
-    <%# <div>There is no file yet</div> %>
   <% end %>   
-  
 </p>
-
-
 
 <% if @task.audio_record? %>
 <p>
@@ -55,7 +39,6 @@
   <%= @task.audio_record %>
 </p>
 <% end %>
-
 
 <p>
   <strong>User:</strong>

@@ -78,4 +78,5 @@ gem 'gon'
 gem 'mini_magick'
 
 
-
+#pages
+gem 'kaminari'
