@@ -83,3 +83,6 @@ gem 'kaminari'
 
 # Seeds
 gem 'faker'
+
+#AWS S3
+gem "aws-sdk-s3", require: false
