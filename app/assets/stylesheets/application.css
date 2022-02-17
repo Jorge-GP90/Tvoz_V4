@@ -14,7 +14,7 @@
  *= require_self
  */
 
-@import '~bootstrap/scss/bootstrap';
+
 @import '/stylesheets/custom';
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
