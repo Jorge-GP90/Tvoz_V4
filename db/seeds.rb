@@ -10,32 +10,42 @@
     name = Faker::Games::SuperMario.character
     email = Faker::Internet.email
     password = 'password'
-    avatar = open("./public/images/default_student.png")
+    # avatar = File.open("#{Rails.root}/public/images/default_student.png")
     role = 'student'
     User.create!(name: name,
                  email: email,
                  password: password,
-                 avatar: avatar)
+                #  avatar: avatar,
+                 role: role)
 end
 
 5.times do |n|
     name = Faker::JapaneseMedia::DragonBall.character
     email = Faker::Internet.email
     password = 'password'
-    avatar = open("./public/images/default_avatar.png")
+    # avatar = File.open("#{Rails.root}/public/images/default_avatar.png")
     role = 'teacher'
+    # title = 'ABC...'
+    # image = File.open("#{Rails.root}/public/images/A.jpeg") 
+    # audio = File.open("#{Rails.root}/public/audio/A.m4a") 
+
     User.create!(name: name,
                  email: email,
                  password: password,
-                 avatar: avatar
+                #  avatar: avatar,
                  role: role)
+    
+    # Task.create!(title: title,
+    #              image: image,
+    #              audio: audio 
+    #              )
+    
     
 end
 
 User.create!(name: 'admin_user',
                email: 'admin@mail.com',
                password: 'password',
-               avatar: open('./public/images/admin_default.png'),
+            #    avatar: File.open("#{Rails.root}/public/images/admin_default.png"),
                role: 'teacher',
                admin: true)
-end
