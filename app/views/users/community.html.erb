@@ -7,10 +7,10 @@
   
 
 
-<div class="table-responsive"> 
-  <table class="table">
 
-  <%= paginate @users %>
+<div class="table-responsive">
+  <h5><%= paginate @users, window: 2  %></h5>
+  <table class="table">
     <thead class="table-dark">
       <tr>
         <th>User Id</th>
@@ -42,6 +42,7 @@
       <% end %>
     </tbody>
   </table>
+  <h5><%= paginate @users, window: 2 %></h5>
 </div>
 
 
