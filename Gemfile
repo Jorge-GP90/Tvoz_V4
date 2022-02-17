@@ -80,3 +80,6 @@ gem 'mini_magick'
 
 #pages
 gem 'kaminari'
+
+# Seeds
+gem 'faker'
