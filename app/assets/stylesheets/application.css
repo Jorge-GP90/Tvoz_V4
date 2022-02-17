@@ -15,7 +15,7 @@
  */
 
 
-@import '/stylesheets/custom';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
 html, body{
