@@ -1,22 +1,24 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React, {Component} from 'react'
+
+// import PropTypes from "prop-types"
 
 
-class Tvoz extends React.Component {
+class Tvoz extends Component {
   render () {
     return (
-      <React.Fragment>
-        {this.props.comment}
+     
+     <footer style={{ backgroundColor: 'lightblue', width: '100%', minHeight: '100px' }}>
+      <div style={{padding: '10px 20px', textAlign: 'center'}}>
+        <h5 style={{textAlign: 'center'}}> © 2022 TVOZ All rights reserved. from react</h5>
+      </div>
+     </footer>
+     
 
-      </React.Fragment>
     );
   }
 }
 
-Tvoz.propTypes = {
-  comment: PropTypes.string
-};
-
 
 
 export default Tvoz
+
