@@ -75,8 +75,8 @@ gem 'react-rails'
 gem 'gon'
 
 #Image Upload
-# gem 'carrierwave', '~> 2.0'
-# gem 'mini_magick'
+gem 'mini_magick'
 
-# audio upload
 
+#pages
+gem 'kaminari'

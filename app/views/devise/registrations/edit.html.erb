@@ -4,12 +4,10 @@
   <%= render "devise/shared/error_messages", resource: resource %>
   
 
-  <%# <div class="field "> %>
-     <%# <%= image_tag set_avatar, id: "img_prev" %> 
-     <%# <div class="pt-2"> %>
-       <%# <%= f.file_field :avatar, id: "select_img" %> 
-     <%# </div> %>
-   <%# </div> %>
+  <div class="field ">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %> 
+   </div>
 
 
   <div class="field">

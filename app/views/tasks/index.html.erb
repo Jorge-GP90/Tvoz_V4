@@ -1,17 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tasks</h1>
+<h1> <%= current_user.name%> Tasks</h1>
 
 <div class="table-responsive"> 
   <table class="table">
     <thead class="table-dark">
       <tr>
-        <th>Title</th>
-        <th>Content</th>
+        <th>Topic</th>
         <th>Image</th>
-        <th>Audio record</th>
-        <th>Audio</th>
-        <th>User</th>
+        <th>Created by</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -19,20 +16,29 @@
       <% @tasks.each do |task| %>
         <tr>
           <td><%= task.title %></td>
-          <td><%= task.content %></td>
-          <td><%= task.image %></td>
-          <td><%= task.audio_record %></td>
-          <td><%= task.audio %></td>
-          <td><%= task.user_id %></td> 
-          <td><%= link_to 'Show', task %></td>
-          <td><%= link_to 'Edit', edit_task_path(task) %></td>
-          <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if task.image.variable? %>
+            <td><%= image_tag(task.image, width: 70) %></td>
+          <% else %>
+            <td> no image </td>
+          <% end %> 
+          <td><%= task.user.name %></td> 
+          <% if current_user.role == "teacher" %>
+            <td><%= link_to 'Show', task %></td>
+            <td><%= link_to 'Edit', edit_task_path(task) %></td>
+            <td><%= button_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td><%= link_to 'Tvoz', edit_task_path(task) %></td>
+            <td></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
+<br>
+<div class="justify-content-center">
+  <h5><%= paginate @tasks %></h5>
+</div>
 <br>
 
 

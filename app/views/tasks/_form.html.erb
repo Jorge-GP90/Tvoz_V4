@@ -11,24 +11,10 @@
     </div>
   <% end %>
 
+
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= image_tag "/images/default_image.png", class: "task_img", id: "img_prev" %>
-    <%= form.file_field :image, accept: 'image/*', id: "select_img" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :audio_record %>
-    <%= form.text_area :audio_record %>
+    <%= form.text_area :title %>
   </div>
 
   <div class="field">
@@ -36,7 +22,17 @@
     <%= form.file_field :audio %>
   </div>
 
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
 
+  <div class="field">
+    <%= form.label :Tvoz %>
+    <%= form.file_field :audio_record %>
+  </div>
+  
+  
   <div class="actions">
     <%= form.submit %>
   </div>

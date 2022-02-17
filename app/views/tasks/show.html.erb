@@ -4,35 +4,63 @@
   <%= @task.title %>
 </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @task.content %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @task.image %>
-</p>
-
-<p>
-  <strong>Audio record:</strong>
-  <%= @task.audio_record %>
-</p>
 
 <p>
   <strong>Audio:</strong>
-  <%#  CHANGE THE UNLESS WHEN YOU FIX THE ISSUE OF THE AUDIO FILE %>
-  <% unless @task.audio?  %>
-    <audio controls src="<%= @task.audio.url %>"></audio>
-  <% else %>
-    <div>There is no file yet</div>
-  <% end %>  
+  <% if @task.audio.attached? %>
+    <audio controls src="<%= url_for(@task.audio) %> "></audio>
+  <% end %>    
 </p>
+
+<% if @task.content? %>
+<p>
+  <strong>Comment:</strong>
+  <%= @task.content %>
+</p>
+<% end %>
+
+
+<p>
+  <strong>Image:</strong>
+  <% if @task.image.attached? %>
+       <%= image_tag(@task.image, width: 500) %>
+  <% end %>   
+</p>
+
+<% if @task.audio_record? %>
+<p>
+  <strong>Tvoz:</strong>
+  <audio controls src="<%= url_for(@task.audio_record) %> "></audio>
+</p>
+<% else %>
+  <%= form_with(model: @task, local: true) do |form| %>
+    <% if @task.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+        <ul>
+          <% @task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="field">
+      <%= form.label :Tvoz %>
+      <%= form.file_field :audio_record %>
+    </div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+<% end %>
 
 <p>
   <strong>User:</strong>
   <%= @task.user_id %>
 </p>
+
+
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %> |

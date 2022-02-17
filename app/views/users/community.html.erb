@@ -1,3 +1,4 @@
+
 <h1>Users#community</h1>
 
 
@@ -5,8 +6,11 @@
     <p> Meet the community and connect with all!</p> <br>
   
 
+
 <div class="table-responsive"> 
   <table class="table">
+
+  <%= paginate @users %>
     <thead class="table-dark">
       <tr>
         <th>User Id</th>
@@ -23,7 +27,11 @@
       <tr class="user_management">
         <td class= "text-justify"><%= user.id %></td>
         <td class= "text-justify"><%= user.name %></td>
-        <td class= "text-justify"><%= user.avatar %></td>
+        <% if user.avatar.blank?%>
+          <td class= "text-justify"><img class="user_avatar" src="/images/default_avatar.png"></td>
+        <% else %>
+          <td class= "text-justify"><%= image_tag(user.avatar, class: "user_avatar") %></td>
+        <% end %>
         <td class= "text-justify"><%= user.email %></td>
         <td class= "text-justify"><%= user.role %></td>
         <td class= "text-justify"><%= user.admin? ? 'Admin' : 'none' %></td>
@@ -38,5 +46,8 @@
 
 
 <br>
+
+<br>
 <%= link_to 'New Task', new_task_path %> |
 <%= link_to 'Home top', root_path %>
+
