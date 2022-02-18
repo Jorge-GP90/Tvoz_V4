@@ -1,12 +1,17 @@
 FactoryBot.define do
-    # factory :task do
-    #   task_name { 'Task_name 1 ' }
-    #   description { 'Default description created T1' }
-    #   expired_at { 'February 01, 2022 00:00' }
-    #   status { 'in_progress' }
-    #   priority { 'low' }
-    #   association :user
-    # end
-
-    
+  factory :task do
+    title { 'title 1 ' }
+    audio { '' }
+    image { '' }
+    audio_record { '' }
+    association :user
   end
+  factory :second_task, class: Task do
+    title { 'title 2 ' }
+    audio { '' }
+    image { '' }
+    audio_record { '' }
+    association :user
+  end
+  
+end
