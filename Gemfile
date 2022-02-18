@@ -37,6 +37,8 @@ gem 'devise'
 gem 'rails_admin', ['>= 3.0.0.rc', '< 4']
 #Access to Managemnet Screen
 gem 'cancancan'
+# RSpec
+gem 'rexml'
 
 
 group :development, :test do
@@ -47,6 +49,12 @@ group :development, :test do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  # RSpec
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
+  gem 'factory_bot_rails'
+  gem 'launchy'
 end
 
 group :development do
@@ -62,6 +70,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
+  gem 'database_cleaner-active_record'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
@@ -72,7 +81,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #react 
 gem 'react-rails'
-gem 'gon'
 
 #Image Upload
 gem 'mini_magick'
