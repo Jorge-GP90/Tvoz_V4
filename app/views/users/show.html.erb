@@ -16,15 +16,10 @@
             <%= button_to "follow", relationships_path(user_id: @user.id), method: :post, class: "btn btn-outline-primary show-btn" %>
             
           <% end %>
-          <div class="follow-part">
-            <% unless current_user.id == @user.id %>
-            <span id="follow-part">
-              <%# <%= render 'relationships/follow', user: @user %> 
-            </span>
-            <% end %>
+          <div class="connect">
             <% if current_user.connected?(@user) %>
-              <i class="fas fa-users"> </i>
-             <% end %>
+              <button id="connect"><i class="fas fa-users">Connected </i></button> 
+            <% end %>
           </div> 
         </div>
       </div>

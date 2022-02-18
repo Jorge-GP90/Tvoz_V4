@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   # load_and_authorize_resource
   before_action :set_task, only: %i[ show edit update destroy ]
+  # include TasksHelper
 
 
 
@@ -13,7 +14,11 @@ class TasksController < ApplicationController
 
   # GET /tasks/1 or /tasks/1.json
   def show
-    
+ 
+  end
+ 
+  def student_show
+    @tasks = Task.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC).page.per(10)
   end
 
   # GET /tasks/new
@@ -23,6 +28,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    
   end
 
   # POST /tasks or /tasks.json
@@ -43,7 +49,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
+        format.html { redirect_to student_show_task_url(@task), notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,8 +60,6 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
-    # @task.audio.purge
-    # @task.image.purge
     if @task.image? && @task.audio?
       @task.image.purge && @task.audio.purge && @task.destroy 
     else 

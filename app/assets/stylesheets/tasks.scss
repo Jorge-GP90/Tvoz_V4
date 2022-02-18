@@ -2,3 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 @import "custom";
+
+
+
+#task-show-background{
+    background: #f5683d;
+}
+
+
+#task-show{
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 0px;
+  text-align: center;
+  margin-top: 10px;
+
+}
+
+#task-img{
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
