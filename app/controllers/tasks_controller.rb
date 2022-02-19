@@ -14,12 +14,13 @@ class TasksController < ApplicationController
 
   # GET /tasks/1 or /tasks/1.json
   def show
-  
+    # @student_audios = @task.audio_students
+    # @student_audio = @task.audio_student.build
   end
  
   def student_show
-    @task = Task.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC).page
-  
+    @tasks = Task.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC).page
+    @student_audios = StudentAudio.select(:audio_student)
   end
 
   # GET /tasks/new
@@ -79,8 +80,10 @@ class TasksController < ApplicationController
   def set_task
     @task = Task.find(params[:id])
   end
+
+ 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:title, :content, :image, :audio_record, :audio, :user_id, :created_at, :task_avatar, :page)
+    params.require(:task).permit(:title, :content, :image, :audio_record, :audio, :user_id, :created_at, :task_avatar, :page, :audio_student)
   end
 end

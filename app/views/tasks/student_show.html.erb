@@ -1,48 +1,45 @@
-
-<p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
-
-
-<p>
-  <strong>Audio:</strong>
-  <% if @task.audio.attached? %>
-    <audio controls src="<%= url_for(@task.audio) %> "></audio>
-  <% end %>    
-</p>
-
-<% if @task.content? %>
-<p>
-  <strong>Comment:</strong>
-  <%= @task.content %>
-</p>
-<% end %>
-
-
-<p>
-  <strong>Image:</strong>
-  <% if @task.image.attached? %>
-       <%= image_tag(@task.image, width: 500) %>
-  <% end %>   
-</p>
-
-<% if @task.audio_record? %>
-<p>
-  <strong>Tvoz:</strong>
-  <audio controls src="<%= url_for(@task.audio_record) %> "></audio>
-</p>
-<% else %>
+<% @tasks.each do |task|%>
   <p>
-  <strong>Tvoz:</strong>
-  <audio controls src="<%= url_for(@task.audio_record) %> ">No audio</audio>
-</p>
-<% end %>k
-
-<p>
-  <strong>User:</strong>
-  <%= @task.user_id %>
-</p>
+    <strong>Title:</strong>
+    <%= task.title %>
+  </p>
+  
+  
+  <p>
+    <strong>Audio:</strong>
+    <% if task.audio.attached? %>
+      <audio controls src="<%= url_for(task.audio) %> "></audio>
+    <% end %>    
+  </p>
+  
+  
+  
+  
+  <p>
+    <strong>Image:</strong>
+    <% if task.image.attached? %>
+         <%= image_tag(task.image, width: 500) %>
+    <% end %>   
+  </p>
+  
+  <%# <% if @student_audio.audio_student? %> 
+  <p>
+    <strong>Tvoz:</strong>
+    <audio controls src="<%= url_for(task.student_audios.audio_student) %> "></audio>
+  </p>
+  <%# <% else %>
+    <p>
+    <strong>Tvoz2:</strong>
+    <%# <audio controls src="<%= url_for(@student_audio.audio_student) %> 
+    <%# ">No audio</audio> %> 
+  </p>
+  <%# <% end %> 
+  
+  <p>
+    <strong>User:</strong>
+    <%= task.user_id %>
+  </p>
+<% end %>
 
 
 

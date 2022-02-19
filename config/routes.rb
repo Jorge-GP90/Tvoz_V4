@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: { registrations: 'users/registrations', 
                                     sessions: 'users/sessions' 
@@ -13,9 +14,12 @@ Rails.application.routes.draw do
     end
   end
   
+
+
   resources :tasks do
+    resources :student_audios
     member do
-      get 'student_show'
+      patch 'student_show'
     end
   end
   resources :relationships, only: %i[create destroy connect]

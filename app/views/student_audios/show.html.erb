@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Title:</strong>
+  <%= @task.title %>
+</p>
+
+
+<p>
+  <strong>Audio:</strong>
+  <% if @task.audio.attached? %>
+    <audio controls src="<%= url_for(@task.audio) %> "></audio>
+  <% end %>    
+</p>
+
+<% if @task.content? %>
+<p>
+  <strong>Comment:</strong>
+  <%= @task.content %>
+</p>
+<% end %>
+
+
+<p>
+  <strong>Image:</strong>
+  <% if @task.image.attached? %>
+       <%= image_tag(@task.image, width: 500) %>
+  <% end %>   
+</p>
+
+<% if @student_audio.audio_student? %>
+<p>
+  <strong>Tvoz:</strong>
+  <audio controls src="<%= url_for(@student_audio.audio_student) %> "></audio>
+</p>
+<% else %>
+  <p>
+  <strong>Tvoz:</strong>
+  <audio controls src="<%= url_for(@student_audio.audio_student) %> ">No audio</audio>
+</p>
+<% end %>
+
+
+<p>
+  <strong>Task ID:</strong>
+  <%= @student_audio.task_id %>
+</p>
+
+
+<p>
+  <strong>User:</strong>
+  <%= @task.user_id %>
+</p>
+
+
+
+<%= link_to 'Edit task', edit_task_path(@task) %> |
+<%= link_to 'Back to index task', tasks_path %> |
+<%= link_to root_path, class: 'order-2 pr-2 bd-highlight' do %>   
+  <i class="fa-solid fa-house">Home</i> |
+<% end %> 
+
+
+<%= link_to 'Edit student Audio', edit_student_audio_path(@student_audio) %> |
+<%= link_to 'Back index student audios', student_audios_path %>
