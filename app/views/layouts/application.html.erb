@@ -26,7 +26,7 @@
         </div>
       <%= yield %>
       </main>
-      <% if controller.controller_name != 'home' %>
+      <% if controller.controller_name == 'home' %>
       <footer>
         <div class="container-fluid padding">
           <div class="row text-center">
@@ -53,14 +53,10 @@
               <p>Saturday: 10 am- 4pm</p>
               <p>Sunday: closed</p>
             </div>
-            <%# <div class="col-12">
-              <hr class="light">
-              <h5>&copy; tvoz.com</h5>
-            </div> %>
           </div>
         </div>
       </footer>
       <% end %>
-      <%= javascript_pack_tag 'tvoz' %>
+    <%= javascript_pack_tag 'tvoz' %>
   </body>
 </html>

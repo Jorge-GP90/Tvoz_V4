@@ -14,11 +14,12 @@ class TasksController < ApplicationController
 
   # GET /tasks/1 or /tasks/1.json
   def show
- 
+  
   end
  
   def student_show
-    @tasks = Task.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC).page.per(10)
+    @task = Task.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC).page
+  
   end
 
   # GET /tasks/new
@@ -50,7 +51,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to student_show_task_url(@task), notice: "Task was successfully updated." }
-        format.json { render :show, status: :ok, location: @task }
+        format.json { render :student_show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -75,12 +76,11 @@ class TasksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.require(:task).permit(:title, :content, :image, :audio_record, :audio, :user_id, :created_at, :task_avatar, :page)
-    end
+  def set_task
+    @task = Task.find(params[:id])
+  end
+  # Only allow a list of trusted parameters through.
+  def task_params
+    params.require(:task).permit(:title, :content, :image, :audio_record, :audio, :user_id, :created_at, :task_avatar, :page)
+  end
 end
