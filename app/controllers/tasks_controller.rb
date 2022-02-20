@@ -19,7 +19,9 @@ class TasksController < ApplicationController
   end
  
   def student_show
-    @tasks = Task.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC).page
+    # @tasks = Task.select(:id, :title, :content, :image, :audio_record, :audio, :created_at, :user_id).order(created_at: :DESC).page
+    @user = current_user
+    @tasks = Task.find(params[:id]).student_audios.where(user_id: @user.id)
     @student_audios = StudentAudio.select(:audio_student)
   end
 

@@ -16,7 +16,7 @@ class StudentAudiosController < ApplicationController
   def new
     # @user = User.find(params[:user_id])
     @task = Task.find(params[:task_id])
-    @student_audio = StudentAudio.new
+    @student_audio = @task.student_audios.new
   end
 
   # GET /student_audios/1/edit
@@ -25,14 +25,16 @@ class StudentAudiosController < ApplicationController
 
   # POST /student_audios or /student_audios.json
   def create
+    
 
     @task = Task.find(params[:task_id])
     # @user = User.find(params[:user_id])
     @student_audio = @task.student_audios.build(student_audio_params)
+    @student_audio.user_id = current_user.id
 
     respond_to do |format|
       if @student_audio.save
-        format.html { redirect_to student_show_task_url(@task), notice: "Student audio was successfully created." }
+        format.html { redirect_to task_student_audios_path, notice: "Student audio was successfully created." }
         format.json { render :student_show, status: :created, location: @student_audio }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -43,6 +45,7 @@ class StudentAudiosController < ApplicationController
 
   # PATCH/PUT /student_audios/1 or /student_audios/1.json
   def update
+    binding.irb
     respond_to do |format|
       if @student_audio.update(student_audio_params)
 
